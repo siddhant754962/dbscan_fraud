@@ -25,54 +25,81 @@ st.set_page_config(
 )
 
 def load_css():
-    """Injects custom CSS for a modern UI."""
+    """Injects custom CSS for a modern, high-contrast UI."""
     st.markdown("""
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
         
+        /* --- Global Style Overrides for White, Bold Text --- */
+        body, .stApp, h1, h2, h3, p, label, li, input, textarea, .st-emotion-cache-16txtl3, [data-testid="stMarkdownContainer"] * {
+            font-family: 'Poppins', sans-serif !important;
+            color: #FFFFFF !important; /* Force all text to be solid white */
+            font-weight: 700 !important; /* Force all text to be bold */
+        }
+        
+        /* --- Base App Styling --- */
         .stApp {
             background: #0F172A;
             background: linear-gradient(to right top, #0f172a, #1e293b, #334155);
-            font-family: 'Poppins', sans-serif;
         }
         .stTitle {
-            font-size: 3em; color: #E2E8F0; font-weight: 700; text-align: left;
+            font-size: 3em; 
+            text-align: left;
         }
         .stMarkdown p, .stMarkdown li { 
-            font-size: 1.1rem; color: #94A3B8; 
+            font-size: 1.1rem;
         }
         [data-testid="stSidebar"] { 
-            background-color: #1E293B; border-right: 1px solid #334155; 
+            background-color: #1E293B; 
+            border-right: 1px solid #334155; 
         }
+
+        /* --- Component-Specific Styling (Structure & Exceptions) --- */
         .stButton>button {
-            border-radius: 12px; border: 2px solid #38BDF8; color: #38BDF8;
-            background-color: transparent; font-weight: 600; transition: all 0.3s ease-in-out;
-            padding: 10px 24px; width: 100%;
+            border-radius: 12px; 
+            border: 2px solid #38BDF8;
+            background-color: transparent; 
+            transition: all 0.3s ease-in-out;
+            padding: 10px 24px; 
+            width: 100%;
         }
+        
+        /* Exception for Readability: Dark text on hover for buttons */
         .stButton>button:hover {
-            background-color: #38BDF8; color: #0F172A; transform: scale(1.05);
+            background-color: #38BDF8;
+            color: #0F172A !important; 
+            transform: scale(1.05);
         }
+
         .stTabs [data-baseweb="tab-list"] { 
             gap: 24px; 
         }
         .stTabs [data-baseweb="tab"] { 
-            height: 50px; background-color: transparent; border-radius: 8px; color: #94A3B8;
+            height: 50px; 
+            background-color: transparent; 
+            border-radius: 8px;
         }
         .stTabs [data-baseweb="tab--selected"] { 
-            background-color: #334155; color: #E2E8F0; 
+            background-color: #334155;
         }
         [data-testid="stMetric"] { 
-            background-color: #1E293B; padding: 20px; border-radius: 12px;
+            background-color: #1E293B; 
+            padding: 20px; 
+            border-radius: 12px;
             border-left: 5px solid #38BDF8;
         }
-        [data-testid="stMetricLabel"] { 
-            font-size: 1.1em; color: #94A3B8; 
+        [data-testid="stMetricValue"] {
+             color: #FFFFFF !important; /* Ensure metric value is also white */
         }
         [data-testid="stFileUploader"] {
-             background-color: #1E293B; padding: 20px; border-radius: 12px;
+            background-color: #1E293B; 
+            padding: 20px; 
+            border-radius: 12px;
         }
         .st-expander {
-            background-color: #1E293B; border-radius: 12px; border: 1px solid #334155;
+            background-color: #1E293B; 
+            border-radius: 12px; 
+            border: 1px solid #334155;
         }
     </style>
     """, unsafe_allow_html=True)
